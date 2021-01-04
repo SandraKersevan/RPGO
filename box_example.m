@@ -1,11 +1,12 @@
-N = 6;
+N = 5;
 
 Bn = box_splines(N);
 
 %celldisp(Bn);
 tri = triuniform(N);
-triZ = triuniform(N-1);
 TRI = tri.ConnectivityList;
+TRI1 = [];
+TRI2 = [];
 
 % plot
 for vr=1:N-2
@@ -31,26 +32,42 @@ for vr=1:N-2
                 x = X((delitev-1)*v+1:(delitev-1)*v+delitev,(delitev-1)*s+1:(delitev-1)*s+delitev);
                 y = Y((delitev-1)*v+1:(delitev-1)*v+delitev,(delitev-1)*s+1:(delitev-1)*s+delitev);
                 z = b((delitev-1)*v+1:(delitev-1)*v+delitev,(delitev-1)*s+1:(delitev-1)*s+delitev);
-                x1 = []; y1 = []; z1 = [];
+                x1 = zeros(delitev*(delitev+1)/2,1); y1 = zeros(delitev*(delitev+1)/2,1); z1 = zeros(delitev*(delitev+1)/2,1);
+                counter = 1;
+                trikotnik = 0;
                 if v==V1(2)
+                    trikotnik = 1;
                     for triv=1:delitev
                         for tris=triv:delitev
-                            x1 = [x1 x(triv,tris)];
-                            y1 = [y1 y(triv,tris)];
-                            z1 = [z1 z(triv,tris)];
+                            x1(counter) = x(triv,tris);
+                            y1(counter) = y(triv,tris);
+                            z1(counter) = z(triv,tris);
+                            counter = counter+1;
                         end
                     end
                 else
+                    trikotnik = 2;
                     for triv=1:delitev
                         for tris=1:triv
-                            x1 = [x1 x(triv,tris)];
-                            y1 = [y1 y(triv,tris)];
-                            z1 = [z1 z(triv,tris)];
+                            x1(counter) = x(triv,tris);
+                            y1(counter) = y(triv,tris);
+                            z1(counter) = z(triv,tris);
+                            counter = counter+1;
                         end
                     end
                 end
                 hold on
-                trisurf(delaunay(x1',y1'),x1',y1',z1')
+                if t==1
+                    TRI1 = delaunay(x1,y1);
+                elseif t==2
+                    TRI2 = delaunay(x1,y1);
+                end
+                
+                if trikotnik==1
+                    trisurf(TRI1,x1,y1,z1)
+                else
+                    trisurf(TRI2,x1,y1,z1)
+                end
             end
         end
     end
