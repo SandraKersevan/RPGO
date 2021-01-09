@@ -1,7 +1,9 @@
 function Bijk = box_spline(i,j,k,smer,D_Bijk)
+% izraèuna škatlasti zlepek za i,j,k kjer uporabi matriko odvodov D_Bijk,
+% kjer so odvodi v dani smeri
 
 N = i+j+k;
-C = intoSquares(i,j,k,D_Bijk);
+C = intoSquares(i,j,k,D_Bijk,smer);
 delitev = N-1;
 delitev_D = N-2;
 
@@ -72,7 +74,5 @@ Bijk = zeros(n, m);
 for v=1:n
     Bijk(v,:) = c((v-1)*m+1:v*m)';
 end
-%Bijk = flip(Bijk);
-%Bijk = Bijk(n-2*(j+k):end,1:2*(i+k)+1);
 
 end

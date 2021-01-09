@@ -1,11 +1,12 @@
-function Bn = box_splines(n,tri)
+function Bn = box_splines(n)
+% izraèuna vse škatlaste zlepke, za katere velja i+j+k=n
+% shranjeni so kot [n-2,1,1 ... 1,n-2,1]
+%                  ...
+%                  [1,1,n-2   0  ...  0] 
+
 
 if n < 3
     error("Argument n mora biti vsaj 3");
-end
-
-if ~exist('tri')
-    tri = triuniform(n);
 end
 
 X = 0:n-1;
@@ -19,8 +20,7 @@ if n == 3
     b111 = [B111([X(:,1), Y(:,1)]) B111([X(:,2), Y(:,2)]) B111([X(:,3), Y(:,3)])];
     Bn{1,1} = b111;
 else
-    trin_1 = triuniform(n-1);
-    Bn_1 = box_splines(n-1,trin_1);
+    Bn_1 = box_splines(n-1);
     
     for i=1:n-2
         for j=1:n-1-i

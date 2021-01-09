@@ -1,4 +1,5 @@
 function D_Bijk = box_spline_der(i,j,k,B,smer)
+% za škatlasti zlepek i,j,k izraèuna matriko odvodov v dani smeri
 
 st_delilnih = i+j+k-3;
 vr = size(B,1);
