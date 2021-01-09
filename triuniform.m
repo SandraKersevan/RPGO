@@ -1,19 +1,61 @@
-function tri = triuniform(N)
-% tocke
-X = 0:N-1;
-[X,Y] = meshgrid(X);
-V = [Y(:),X(:)];
+function tri = triuniform(N,M,type)
+% nariše mrežo tipa I na [0,N]x[0,M] ali tipa II za i+k+l=N in j+k+l=M
+
+if ~exist('M','var')
+    M = N;
+end
+
+if ~exist('type','var')
+    type = 1;
+end
 
 % enakomerna triangulacija tipa I
-TRI = zeros(2*(N-1)^2,3);
-counter = 1;
-for i=1:N-1
-    for j=1:N-1
-        TRI(counter,:) = [find(V(:,2)==Y(i,1) & V(:,1)==X(i,j)) find(V(:,2)==Y(i,1) & V(:,1)==X(i,j+1)) find(V(:,2)==Y(i+1,1) & V(:,1)==X(i+1,j+1))];
-        TRI(counter+1,:) = [find(V(:,2)==Y(i+1,1) & V(:,1)==X(i+1,j+1)) find(V(:,2)==Y(i+1,1) & V(:,1)==X(i+1,j)) find(V(:,2)==Y(i,1) & V(:,1)==X(i,j))];
-        counter = counter + 2;
+if type==1
+    % tocke
+    X = 0:N;
+    Y = 0:M;
+    [X,Y] = meshgrid(X,Y);
+    
+    V = [reshape(X',[],1),reshape(Y',[],1)];
+
+    TRI = zeros(2*M*N,3);
+    counter = 1;
+    for i=1:M
+        for j=1:N    
+            TRI(counter,:) = [find(V(:,2)==Y(i,j) & V(:,1)==X(i,j)) find(V(:,2)==Y(i,j+1) & V(:,1)==X(i,j+1)) find(V(:,2)==Y(i+1,j+1) & V(:,1)==X(i+1,j+1))];
+            TRI(counter+1,:) = [find(V(:,2)==Y(i+1,j+1) & V(:,1)==X(i+1,j+1)) find(V(:,2)==Y(i+1,j) & V(:,1)==X(i+1,j)) find(V(:,2)==Y(i,j) & V(:,1)==X(i,j))];
+            counter = counter + 2;
+        end
     end
+    tri = triangulation(TRI,V);
+    
+% enakomerna triangulacija tipa II
+elseif type==2
+    % tocke
+    X = -min(N-2,M-2):min(N-1,M-1);
+    Y = 0:M;
+    X_half = -min(N-2,M-2)+1/2:1:min(N-1,M-1);
+    Y_half = 1/2:1:M;
+    [X,Y] = meshgrid(X,Y);
+    [X_half,Y_half] = meshgrid(X_half,Y_half);
+
+    V = [reshape(X',[],1),reshape(Y',[],1); reshape(X_half',[],1),reshape(Y_half',[],1)];
+    [~,indx] = sort(V(:,1));
+    V = V(indx,:);
+    
+    TRI = zeros(4*(size(X,2)-1)*M,3);
+    counter = 1;
+    for i=1:M
+        for j=1:size(X,2)-1
+            TRI(counter,:) = [find(V(:,2)==Y(i,j) & V(:,1)==X(i,j)) find(V(:,2)==Y(i,j)+1/2 & V(:,1)==X(i,j)+1/2) find(V(:,2)==Y(i,j+1) & V(:,1)==X(i,j+1))];
+            TRI(counter+1,:) = [find(V(:,2)==Y(i,j+1) & V(:,1)==X(i,j+1)) find(V(:,2)==Y(i,j)+1/2 & V(:,1)==X(i,j)+1/2) find(V(:,2)==Y(i+1,j+1) & V(:,1)==X(i+1,j+1))];
+            TRI(counter+2,:) = [find(V(:,2)==Y(i+1,j+1) & V(:,1)==X(i+1,j+1)) find(V(:,2)==Y(i,j)+1/2 & V(:,1)==X(i,j)+1/2) find(V(:,2)==Y(i+1,j) & V(:,1)==X(i+1,j))];
+            TRI(counter+3,:) = [find(V(:,2)==Y(i+1,j) & V(:,1)==X(i+1,j)) find(V(:,2)==Y(i,j)+1/2 & V(:,1)==X(i,j)+1/2) find(V(:,2)==Y(i,j) & V(:,1)==X(i,j))];
+            counter = counter + 4;
+        end
+    end
+    tri = triangulation(TRI,V);
 end
-tri = triangulation(TRI,V);
+
 end
 
