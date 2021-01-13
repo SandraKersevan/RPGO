@@ -39,7 +39,7 @@ for sqv=1:j+k
                     e((sqv-1)*(delitev-1)+1:(sqv-1)*(delitev-1)+delitev,(sqs-1)*(delitev-1)+1:(sqs-1)*(delitev-1)+delitev) = e_s;
                 end
                 A(enacba,:) = reshape(e',1,[]);
-                B(enacba) = D(vr,st);
+                B(enacba) = D(vr,st)./(N-2);
                 enacba = enacba+1;
             end
         end
@@ -61,7 +61,7 @@ for sqv=1:j+k
                 end
                 
                 A(enacba,:) = reshape(e',1,[]);
-                B(enacba) = D(vr,st);
+                B(enacba) = D(vr,st)./(N-2);
                 enacba = enacba+1;
             end
         end

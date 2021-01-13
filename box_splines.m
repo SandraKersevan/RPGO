@@ -39,7 +39,7 @@ else
                 D_Bijk = box_spline_der(i,j,k,Bn_1{k,j},smer);
             end
             
-            Bn{k,j} = flip(round((n-2).*box_spline(i,j,k,smer,flip(D_Bijk))));
+            Bn{k,j} = flip(box_spline(i,j,k,smer,flip(D_Bijk)));
         end
     end
 end
