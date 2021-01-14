@@ -1,0 +1,295 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\newtheorem{theorem}{Izrek}
+\newtheorem{definition}{Definicija}
+\newtheorem{lemma}{Lema}
+
+\title{Škatlasti zlepki}
+\author{Sandra Kerševan, Sara Močnik}
+\date{Januar 2020}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+...
+\end{abstract}
+
+\section{Uvod}
+
+\section{Zlepki tipa 1}
+Triangulacija ravnine $\Delta_I$: 
+regularna triangulacija tipa 1: mreža $\mathbb{Z} \times \mathbb{Z}$, kvadratki in diagonale (x=y)
+
+Točke triangulacije: $(i, j) \in \mathbb{Z} \times \mathbb{Z}$
+Oznaka posamezne točke: $(x,y)$ ali $v$
+
+Multiindeks: $\mu = (i,j)$
+
+Prostor $C^r$ zlepkov stopnje d: $S_d^r(\Delta_I) = \{ s \in C^r(\Omega):\ s|_T \in \mathbb{P}_n^2\  \forall T \in  \Delta_I\}$
+
+Konstruirati želimo zlepke $B$, ki ustrezajo naslednjim pogojem:
+\begin{enumerate}
+\item nosilec B je majhen: $supp\ B = nosilec\ B = \overline{\{x;\ Bx \neq 0\}}$
+\item B je pozitivna na $Int(supp\ B)$
+\item $S := span \{ B(v-\mu)  \}_{\mu \in \mathbb{Z}^2}$ vsebuje polinome stopnje d
+\item $\sum_{\mu \in \mathbb{Z}^2} B(v-\mu)  = 1$ za vse $v \in \mathbb{R}^2$
+\item Prostor $S$ aproksimira gladke funkcije na poljubni kompaktni podmnožici $\mathbb{R}^2$
+\end{enumerate}
+
+Primer: $B_{111}$
+
+$B_{111}$ je Courantova funkcija (tudi trikotna funkcija - v ravnini zavzame obliko trikotnika višine 1); zanjo velja:  \\
+$B_{111} \in S_1^0(\Delta_I)$\\
+$B_{111} ((1,1)) = 1$\\
+$B_{111} ((i,j)) = 0\ \forall (i,j) \neq (1,1)$
+\\
+\\
+% slika iz matlaba
+
+Za zlepke višje stopnje definiramo še smeri:
+\begin{enumerate}
+\item premik v levo: $e_1 = (1,0)$
+\item premik navzgor: $e_2 = (0,1)$
+\item premik po diagonali: $e_3 = (1,1)$
+\end{enumerate}
+
+Za $n \geq 3$ definiramo množico $X_n := \{v_1, v_2, \ldots , v_n\}$, kjer so $v_1, v_2, v_3 \in \{e_1, e_2, e_3\}$ in $X_n$ vsebuje vsakega od $e_1, e_2, e_3$ vsaj enkrat. Množici $X_n$ rečemo množica smeri tipa 1.
+Brez škode za splošnost: $v_i = e_i$ za $i = 1, 2, 3$.
+
+\begin{definition}
+Naj bo $n > 3$ in $X_n := \{v_1, v_2, \ldots , v_n\}$ množica smeri tipa 1.
+Definirajmo množice $X_i := \{v_1, v_2, \ldots , v_i\}$ za $i = 3, 4, \ldots, n$.
+Potem za $4 \leq i \leq n$ rekurzivno definiramo škatlati zlepek tipa 1  z enačbo:
+$$B(v|X_i) := \int_0^1 B(v-tv_i | X_{i-1}) dt,$$
+kjer je $B(v|X_3)$ škatlasti zlepek $B_{111}$.
+\end{definition}
+
+Da se pokazati, da zlepki $B(v|X_i)$ niso odvisni od vrstnega reda smeri v množici smeri tipa 1 $X_n$.
+
+Oznaka: $B_{ijk}(v)$ škatlasti zlepek tipa 1 $B(v|X_n)$, kjer je $X_n$ množica smeri tipa 1, za katero velja: $X_n = \{e_1^{<i>},e_2^{<j>}, e_3^{<k>}\}$. % Velja tudi i+j+k=n?
+
+\begin{theorem}
+Naj bo $X_n$ množica smeri tipa 1.
+Škatlasti zlepek $B(v|X_n)$ ima nosilec na zaprtju množice
+$$[X_n] := \{ \sum_{j=1}^n t_j v_j : \ 0 \leq t_j < 1; \ j = 1, \ldots, n\}$$.
+Za vse točke $v$ v notranjosti množice $[X_n]$ je $B(v|X_n) > 0$.
+\end{theorem}
+
+Množici $[X_n]$ rečemo tudi afina kocka $X_n$. %?????????
+
+Nosilci za različne izbire $i, j, k$:
+\begin{enumerate}
+\item $B_{211}$ je škatlasti zlepek tipa 1, njegova množica smeri tipa 1 je  $X_n = \{e_1^{<2>},e_2^{<1>}, e_3^{<1>}\}$ (dvakrat levo, enkrat navzgor in enkrat po diagonali)
+\item $B_{221}$ je škatlasti zlepek tipa 1, njegova množica smeri tipa 1 je  $X_n = \{e_1^{<2>},e_2^{<2>}, e_3^{<1>}\}$
+\item $B_{322}$ je škatlasti zlepek tipa 1, njegova množica smeri tipa 1 je  $X_n = \{e_1^{<3>},e_2^{<2>}, e_3^{<2>}\}$
+\end{enumerate}
+Znotraj teh območij je zlepek pozitiven, zunaj pa enak 0.
+\\
+\\
+
+Odvodi škatlastih zlepkov
+
+Dan imamo vektor $u = (u_1, u_2) \in \mathbb{R}^2$, $u \neq (0,0)$.
+Naj bo $D_u$ smerni odvod %???? 
+$\bigtriangleup_u, \bigtriangledown_u$ naprej in nazaj diferenčna operatorja %????
+za katera velja:
+$$\bigtriangleup_u f(\cdot) = f(\cdot + u) - f(\cdot)$$
+$$\bigtriangledown_u f(\cdot) = f(\cdot) - f(\cdot - u)$$.
+
+Bolj splošno: Če je $Y \subset \mathbb{R}^2$ končna množica neničelnih vektorjev, potem označimo:
+$$D_Y := \prod_{u \in Y} D_u$$
+$$\bigtriangleup_Y := \prod_{u \in Y} \bigtriangleup_u$$
+$$\bigtriangledown_Y := \prod_{u \in Y} \bigtriangledown_u$$
+
+\begin{lemma}
+\label{lema1}
+Naj bo $X_n$ množica smeri tipa 1 in naj bo $n\geq 4$.
+Potem za $4 \leq j < n$ velja:
+$$D_{v_j} B(\cdot|X_n) = \bigtriangledown_{v_j} B(\cdot | X_n \setminus \{v_j\}).$$
+\end{lemma}
+
+\begin{theorem}
+Naj bo $X_n = \{e_1^{<i>},e_2^{<j>}, e_3^{<k>}\}$ množica smeri tipa 1 in $i+j+k = n$.
+Potem $B_{ijk} := B(\cdot | X_n) \in S_{n-2}^r (\Delta_I)$, kjer je $r := r(X_n) = min\{i+j, j+k, k+i\} -2$.
+\end{theorem}
+
+Zgornji izrek nam da naslednje rezultate:
+\begin{itemize}
+\item $B_{111} := B(\cdot | X_n) \in S_{1}^0 (\Delta_I)$
+\item $B_{221} := B(\cdot | X_n) \in S_{3}^1 (\Delta_I)$
+\item $B_{222} := B(\cdot | X_n) \in S_{4}^2 (\Delta_I)$
+\item $B_{322} := B(\cdot | X_n) \in S_{5}^2 (\Delta_I)$
+\item $B_{332} := B(\cdot | X_n) \in S_{6}^3 (\Delta_I)$
+\item $B_{333} := B(\cdot | X_n) \in S_{7}^4 (\Delta_I)$
+\end{itemize}
+
+\begin{theorem}
+Za vse gladke funkcije $f \in C(\mathbb{R}^2)$ velja:
+$$\int_{\mathbb{R}^2} B(v|X_n) f(v) dv = \int_{[0,1]^n} f(\sum_{i=1}^n t_i v_i) dt_1 dt_2 \ldots dt_n$$
+\end{theorem}
+
+Če v zgornji izrek vstavimo funkcijo $f(v) = e^{-iv \cdot \omega }$, kjer sta $\omega = (\omega_1, \omega_2)$ in $i = \sqrt{-1}$ imaginarna enota, dobimo naslednji izrek.
+
+\begin{theorem}
+Fourierova transformacija funkcije $B(\cdot|X_n)$ je 
+$$\overset{\wedge}{B}(\cdot|X_n)(\omega) = \prod_{j=1}^n \frac{1-e^{-i\omega \cdot v_j}}{i \omega \cdot v_j}$$
+\end{theorem}
+
+Greenova formula za škatlaste zlepke
+\begin{theorem}
+Naj bo $n\geq 3$. Za vsako $f \in C^1(\mathbb{R}^2)$ velja: 
+$$\int_{\mathbb{R}^2} B(v|X_n) D_{v_i} f(v) dv = - \int_{\mathbb{R}^2} D_{v_i} B(v|X_n) f(v) dv$$
+kjer je $i = 1, \ldots, n$.
+\end{theorem}
+
+Peanova formula za škatlaste zlepke:
+\begin{theorem}
+Za vsako $f \in C^n(\mathbb{R}^2)$ velja: 
+$$\bigtriangleup_{X_n} f((0,0))=  \int_{\mathbb{R}^2} B(v|X_n)D_{X_n} f(v) dv$$
+kjer je $i = 1, \ldots, n$.
+\end{theorem}
+
+Izpopolnitvena formula za škatlaste zlepke: %??????????????
+\begin{theorem}
+Obstaja končno zaporedje $\{a_{\nu}\}_{\nu \in \mathbb{Z}^2}$, tako da velja:
+$$B(v|X_n) =  \sum_{\nu \in \mathbb{Z}^2} a_{\nu} B(2v-\nu|X_n)$$
+kjer je $i = 1, \ldots, n$.
+\end{theorem}
+
+
+\subsection{B-ordinate za poljuben škatlast zlepek tipa 1}
+V tem razdelku bomo pokazali, kako najdemo B-ordinato za poljuben škatlast zlepek tipa 1. S pomočjo izračunanih Bezierjevih ordinat in deCasteljaujevega postopka nato izračunamo zlepek. %??
+
+B-ordinate za $B_{111}$
+$B_{111} \in S_1^0(\Delta_I)$\\
+$B_{111} ((1,1)) = 1$\\
+$B_{111} ((i,j)) = 0\ \forall (i,j) \neq (1,1)$
+\\
+\\
+B-ordinate za škatlaste zlepke tipa 1 višje stopnje:
+
+Spomnimo se: $X_n := \{v_1, v_2, \ldots , v_n\}$ je množica smeri tipa 1. Zanjo velja, da je $v_i \in \{e_1, e_2, e_3\}$ .
+Potem je $D_{v_i} B(v|X_n)$ na kateremkoli trikotniku triangulacije smerni odvod v smeri ene od stranic trikotnika. 
+
+Oznaka: $p_{n-2} (v) := \sum_{i+j+k=n-2} c_{ijk} B_{ijk}^{n-2}(v)$ zožitev $B(\cdot | X_n)$ na trikotnik $T = <(0,0), (1, 0), (1,1)>$. $B_{ijk}^{n-2}(v) = \frac{(n-2)!}{i! j! k!} u^i v^j w^k$, $i, j, k \in \mathbb{N}_0, i+j+k=n-2$ in $(u,v, w ) = Bar(v; T)$
+
+Potem velja:
+$$D_{e_1} p_{n-2} (v) = (n-2)\sum_{i+j+k=n-3} (c_{i,j+1,k} - c_{i+1, j, k}) B_{ijk}^{n-3}(v)$$
+$$D_{e_2} p_{n-2} (v) = (n-2)\sum_{i+j+k=n-3} (c_{i,j,k+1} - c_{i, j+1, k}) B_{ijk}^{n-3}(v)$$
+$$D_{e_3} p_{n-2} (v) = (n-2)\sum_{i+j+k=n-3} (c_{i,j,k+1} - c_{i+1, j, k}) B_{ijk}^{n-3}(v)$$
+
+Po \ref{lema1} velja: $$D_{v_j} B(v|X_n) = \bigtriangledown_{v_j} B(v | X_n \setminus \{v_j\}).$$
+
+
+Recimo, da so znane vse B-oridnate $ B(v | X_n \setminus \{v_j\})$. Potem so po zgornji enačbi znane vse B-ordinate $\bigtriangleup_{v_j} B(\cdot|X_n \setminus \{v_j\})$. 
+
+Torej B-ordinate $B(\cdot | X_n)$ lahko izračunamo s pomočjo prvih odvodov in znanja, da je rob nosilca škatlastega zlepka enak 0.
+Znano imamo B-ordinate $B_{111}$. Iz teh lahko izračunamo $B_{211}$. Rekurzivno tako izračunamo $B_{ijk}$ za poljubne $i, j, k \geq 1$.
+
+
+Primer:
+
+Naj bo $X_4 = \{e_1^{<2>}, e_2^{<1>}, e_3^{<1>}\}$ in $X_3 = \{e_1^{<1>}, e_2^{<1>}, e_3^{<1>}\}$.
+Spomnimo se oznake: $B(\cdot | X_4) = B_{211}$.
+Izračunajmo B-ordinate za $B_{211}$:
+$$D_{e_1} B_{211} = B(\cdot | X_3) - B(\cdot -e_1 | X_3)$$
+$$D_{e_1} B_{211} = B_{111}(\cdot) - B(\cdot -e_1 | X_3)$$
+
+Če označimo B-ordinate $B_{211}$ z $a_{ij}$ in B-ordinate $D_{e_1} B_{211}$ z $b_{ij}$ dobimo enačbe:
+
+$$b_{01} = a_{12} - a_{11} = a_{03} - a_{02}$$
+$$b_{02} = a_{04} - a_{03} = a_{14} - a_{13}$$
+$$b_{03} = a_{06} - a_{05} = a_{16} - a_{15}$$
+$$b_{10} = a_{21} - a_{20} $$
+$$b_{11} = a_{22} - a_{21} = a_{32} - a_{31} = a_{23} - a_{22} = a_{13} - a_{12}$$
+$$b_{12} = a_{24} - a_{23} = a_{15} - a_{14} = a_{25} - a_{24} = a_{34} - a_{33}$$
+$$b_{13} = a_{26} - a_{25} $$
+$$b_{20} = a_{31} - a_{30} = a_{41} - a_{40}$$
+$$b_{21} = a_{42} - a_{41} = a_{33} - a_{32}$$
+$$b_{22} = a_{44} - a_{43} = a_{35} - a_{34}$$
+
+Ob upoštevanju, da je rob nosilca škatlastega zlepka enak 0, dobimo dodatne pogoje:
+$$a_{01} = a_{02} = a_{03} = a_{04} = a_{05} = a_{06} = 0$$
+$$a_{20} = a_{30} = a_{40}$$
+$$a_{11} = 0$$
+$$a_{41} = a_{42} = a_{43} = a_{44} = 0$$
+$$a_{16} = a_{26} = a_{35} = 0$$
+
+Tako dobimo:
+$$b_{01} = a_{12} = 0$$
+$$b_{02} = 0 = a_{14} - a_{13}$$
+$$b_{03} = 0 = 0 - a_{15}$$
+$$b_{10} = a_{21}  $$
+$$b_{11} = a_{22} - a_{21} = a_{32} - a_{31} = a_{23} - a_{22} = a_{13} - a_{12}$$
+$$b_{12} = a_{24} - a_{23} = a_{15} - a_{14} = a_{25} - a_{24} = a_{34} - a_{33}$$
+$$b_{13} = 0- a_{25} $$
+$$b_{20} = a_{31}  = 0$$
+$$b_{21} = 0 = a_{33} - a_{32}$$
+$$b_{22} =0 = 0  - a_{34}$$
+
+
+
+Formula za notrjanji produkt dveh škatlastih zlepkov:
+\begin{theorem}
+Za vsako $i,j,k \geq 1$ in $m, n, o \geq 1$ velja: 
+$$\int_{\mathbb{R}^2} B_{ijk} B_{mno} dv =  B_{i+m, j+n, k+o} (i+k, j+k)$$.
+\end{theorem}
+
+
+\section{Zlepki tipa 2}
+
+Triangulacija ravnine $\Delta_{II}$: 
+regularna triangulacija tipa 2: mreža $\frac{\mathbb{Z}}{2} \times \frac{\mathbb{Z}}{2}$, kvadratki in diagonale (x=y, x =-y)
+Točke triangulacije: $(\frac{i}{2}, \frac{j}{2}) \in \mathbb{Z} \times \mathbb{Z}$
+Oznaka posamezne točke: $(x,y)$ ali $v$
+
+Osnovna 'celica': blok $B_{1111}$, zlepek sodi v družino $S_2^1 (\Delta_{II})$ 
+
+
+Za $n \geq 4$ definiramo množico smeri tipa 2 $X_n := \{v_1, v_2, \ldots , v_n\}$, kjer so $v_i \in \{e_1, e_2, e_3, e_4\}$ in $e_4 = (-1, 1)$.
+Brez škode za splošnost: $v_i = e_i$ za $i = 1, 2, 3, 4$.
+
+\begin{definition}
+Naj bo $n > 4$ in $X_n := \{v_1, v_2, \ldots , v_n\}$ množica smeri tipa 2.
+Definirajmo množice $X_i := \{v_1, v_2, \ldots , v_i\}$ za $i = 4, \ldots, n$.
+Potem za $5 \leq i \leq n$ rekurzivno definiramo škatlati zlepek tipa 2  z enačbo:
+$$B(v|X_i) := \int_0^1 B(v-tv_i | X_{i-1}) dt,$$
+kjer je $B(v|X_4)$ škatlasti zlepek $B_{1111}$.
+\end{definition}
+
+Oznaka: $B_{ijkl}(v)$ škatlasti zlepek tipa 2 $B(v|X_n)$, kjer je $X_n$ množica smeri tipa 2, za katero velja: $X_n = \{e_1^{<i>},e_2^{<j>}, e_3^{<k>}, e_4^{<l>}\}$.
+
+Škatlasti zlepki tipa 2 imajo podobne lastnosti, kot škatlasti zlepki tipa 1. Iz prejšnjega razdelka lahko hitro pokažemo, da imajo škatlasti zlepki tipa 2 nosilec na afini kocki $[X_n]$  in so pozitivni v njeni notranjosti.
+
+Če je $n \geq 5$ in je $X_n$ množica smeri tipa 2, potem formula v \ref{lema1} drži.
+
+\begin{theorem}
+Naj bo $X_n = \{e_1^{<i>},e_2^{<j>}, e_3^{<k>}, e_4^{<l>}\}$ množica smeri tipa 2 in $i+j+k+l = n$.
+Potem $B_{ijkl} := B(\cdot | X_n) \in S_{n-2}^r (\Delta_{II})$, kjer je $r := r(X_n) = min\{i+k+l, j+k+l, i+j+k, i+j+l\} -2$.
+\end{theorem}
+
+
+\begin{theorem}
+Za vse gladke funkcije $f \in C(\mathbb{R}^2)$ velja:
+$$\int_{\mathbb{R}^2} B(v|X_n) f(v) dv = \int_{[0,1]^n} f(\sum_{i=1}^n t_i v_i) dt_1 dt_2 \ldots dt_n$$
+\end{theorem}
+
+Ker velja zgornji izrek, velja izrek o Fourierovi transformaciji tako za škatlaste zlepke tipa 1 kot za škatlaste zlepke tipa 2. 
+
+Velja:
+\begin{itemize}
+\item $B_{1111} := B(\cdot | X_n) \in S_{2}^1 (\Delta_{II})$
+\item $B_{2111} := B(\cdot | X_n) \in S_{3}^1 (\Delta_{II})$
+\item $B_{2211} := B(\cdot | X_n) \in S_{4}^2 (\Delta_{II})$
+\item $B_{2221} := B(\cdot | X_n) \in S_{5}^3 (\Delta_{II})$
+\item $B_{2222} := B(\cdot | X_n) \in S_{6}^2 (\Delta_{II})$
+\end{itemize}
+
+\end{document}
