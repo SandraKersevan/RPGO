@@ -112,17 +112,17 @@ Točke triangulacije: $(x,y) = v \in \mathbb{Z} \times \mathbb{Z}$
 \frametitle{Škatlasti zlepki tipa 1}
 
 \begin{definicija}
-Prostor $C^r$ zlepkov stopnje n: $S_d^r(\Delta_I) = \{ s \in C^r(\Omega):\ s|_T \in \mathbb{P}_d^2\  \forall T \in  \Delta_I\}$
+Prostor $C^r$ zlepkov stopnje d: $S_d^r(\Delta_I) = \{ s \in C^r(\Omega):\ s|_T \in \mathbb{P}_d^2\  \forall T \in  \Delta_I\}$
 \end{definicija}
 
 \vspace{5mm}
 Cilj: \\
-Konstruirati zlepke $B$, $B \in S_n^r (\Delta_I)$, za katere velja:
+Konstruirati zlepke $B$, $B \in S_d^r (\Delta_I)$, za katere velja:
 \begin{enumerate}
 \item Nosilec zlepka B je majhen.  $\big[ supp\ B = nosilec\ B = \overline{\{x;\ Bx \neq 0\}}\ \big] $
 \item B je pozitiven na $Int(supp\ B)$.
 \item $S := Lin \{ B(v-\mu)  \}_{\mu \in \mathbb{Z}^2}$ vsebuje polinome stopnje $d$.
-\item $\sum_{\mu \in \mathbb{Z}^2} B(v-\mu)  = 1$ za vse $v \in \mathbb{R}^2$
+\item $\sum_{\mu \in \mathbb{Z}^2} B(v-\mu)  = 1$ za vse $v \in \mathbb{R}^2$.
 \item Prostor $S$ aproksimira gladke funkcije na poljubni kompaktni podmnožici $\mathbb{R}^2$.
 \end{enumerate}
 
@@ -192,7 +192,7 @@ Oznaka: \\
 \begin{izrek}
 Naj bo $X_n$ množica smeri tipa 1.\\
 Škatlasti zlepek $B(v|X_n)$ ima nosilec na zaprtju množice
-$$[X_n] := \{ \sum_{j=1}^n t_j v_j : \ 0 \leq t_j < 1; \ j = 1, \ldots, n\}$$.
+$$[X_n] := \{ \sum_{j=1}^n t_j v_j : \ 0 \leq t_j < 1; \ j = 1, \ldots, n\}.$$
 Za vse točke $v$ v notranjosti množice $[X_n]$ je $B(v|X_n) > 0$.
 \end{izrek}
 
@@ -220,12 +220,12 @@ Množici $[X_n]$ rečemo tudi afina kocka $X_n$.
 \frametitle{Škatlasti zlepki tipa 1 \\ Odvodi}
 
 Dan imamo vektor $u = (u_1, u_2) \in \mathbb{R}^2$, $u \neq (0,0)$. \\
-Naj bo $D_u$ smerni odvod, %???? 
-$ \bigtriangledown_u$ pa nazaj diferenčen operator, %????
-za katerega velja:
-$$\bigtriangledown_u f(\cdot) = f(\cdot) - f(\cdot - u)$$.
+Naj bo $D_u$ smerni odvod, \\
+$\bigtriangleup_u, \bigtriangledown_u$ pa prema in obratna diferenca za kateri velja:
+$$\bigtriangleup_u f(\cdot) = f(\cdot + u) - f(\cdot)$$
+$$\bigtriangledown_u f(\cdot) = f(\cdot) - f(\cdot - u).$$
 
-\vspace{5mm}
+% \vspace{3mm}
 
 \begin{lema}
 \label{lema1}
@@ -263,27 +263,30 @@ Zgornji izrek nam da naslednje rezultate:
 \begin{frame}
 \frametitle{Škatlasti zlepki tipa 1 \\ B-ordinate}
 
-$X_n := \{v_1, v_2, \ldots , v_n\}$ je množica smeri tipa 1. Zanjo velja, da je $v_i \in \{e_1, e_2, e_3\}$ .
+$X_n := \{v_1, v_2, \ldots , v_n\}$ je množica smeri tipa 1. Zanjo velja, da je $v_i \in \{e_1, e_2, e_3\}.$
 
-Potem je $D_{v_i} B(v|X_n)$ na kateremkoli trikotniku triangulacije smerni odvod v smeri ene od stranic trikotnika. 
-
-Po lemi od prej velja: $$D_{v_j} B(v|X_n) = \bigtriangledown_{v_j} B(v | X_n \setminus \{v_j\}).$$
+\vspace{3mm}
+Oznaka za zožitev $B(\cdot | X_n)$ na trikotnik $T = \langle (0,0), (1, 0), (1,1)\rangle$:\\
+$$p_{n-2} (v) := \sum_{i+j+k=n-2} c_{ijk} B_{ijk}^{n-2}(v)$$
+\vspace{3mm}
+Vemo: 
+$$B_{ijk}^{n-2}(v) = \frac{(n-2)!}{i! j! k!} u^i v^j w^k$$
+Bernsteinovi bazni polinomi, kjer je $i, j, k \in \mathbb{N}_0, i+j+k=n-2$ in $(u,v, w ) = Bar(v; T).$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Škatlasti zlepki tipa 1 \\ B-ordinate}
-
+\small
 $$p_{n-2} (v) := \sum_{i+j+k=n-2} c_{ijk} B_{ijk}^{n-2}(v)$$
-Oznaka za zožitev $B(\cdot | X_n)$ na trikotnik $T = \langle (0,0), (1, 0), (1,1)\rangle$.\\
-Vemo: $B_{ijk}^{n-2}(v) = \frac{(n-2)!}{i! j! k!} u^i v^j w^k$, $i, j, k \in \mathbb{N}_0, i+j+k=n-2$ in $(u,v, w ) = Bar(v; T)$
-
-Potem velja:
+\normalsize
 $$D_{e_1} p_{n-2} (v) = (n-2)\sum_{i+j+k=n-3} (c_{i,j+1,k} - c_{i+1, j, k}) B_{ijk}^{n-3}(v)$$
 $$D_{e_2} p_{n-2} (v) = (n-2)\sum_{i+j+k=n-3} (c_{i,j,k+1} - c_{i, j+1, k}) B_{ijk}^{n-3}(v)$$
 $$D_{e_3} p_{n-2} (v) = (n-2)\sum_{i+j+k=n-3} (c_{i,j,k+1} - c_{i+1, j, k}) B_{ijk}^{n-3}(v)$$
 
+\vspace{3mm}
+$D_{v_i} B(v|X_n)$ na kateremkoli trikotniku triangulacije smerni odvod v smeri ene od stranic trikotnika. Po lemi od prej velja: $$D_{v_j} B(v|X_n) = \bigtriangledown_{v_j} B(v | X_n \setminus \{v_j\}).$$
 \end{frame}
 
 
@@ -314,12 +317,12 @@ Smeri v triangulaciji:
 \item premik v levo: $e_1 = (1,0)$
 \item premik navzgor: $e_2 = (0,1)$
 \item premik po diagonali: $e_3 = (1,1)$
-\item premik po drugi diagonali: $e_3 = (-1,1)$
+\item premik po drugi diagonali: $e_4 = (-1,1)$
 \end{itemize}
 
 \vspace{5mm}
 
-Za $n \geq 3$ definiramo množico  $$X_n := \{v_1, v_2, \ldots , v_n\},$$ kjer so $v_i \in \{e_1, e_2, e_3, e_4\}$ in $X_n$ vsebuje vsako od smeri $e_1, e_2, e_3, e_4$ vsaj enkrat. \\
+Za $n \geq 4$ definiramo množico  $$X_n := \{v_1, v_2, \ldots , v_n\},$$ kjer so $v_i \in \{e_1, e_2, e_3, e_4\}$ in $X_n$ vsebuje vsako od smeri $e_1, e_2, e_3, e_4$ vsaj enkrat. \\
 Množici $X_n$ rečemo \textbf{množica smeri tipa 2}.\\
 \vspace{4mm}
 $X_4 = \{e_1,e_2, e_3, e_4\}$
