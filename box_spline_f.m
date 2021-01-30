@@ -1,22 +1,18 @@
-% GRAPH FOR FUNCTION F ON INTERVAL [0,a]x[0,b]
-f = @(x,y) (x <= y).*(x - y).^3 - (x > y).*(x - y).^3;
-%f = @(x,y) sin(x).*cos(y);
+% GRAPH FOR FUNCTION F ON INTERVAL [0,a]x[0,b] with box splines
+%f = @(x,y) (x <= y).*(x - y).^3 - (x > y).*(x - y).^3;
+f = @(x,y) sin(x).*cos(y);
 %f = @(x,y) 3.*(1-x).^2.*exp(-x.^2-(y+1).^2)-10.*(x./5-x.^3-y.^5).*exp(-x.^2-y.^2)-1/3.*exp(-(x+1).^2-y.^2);
 a = 3; b = 3;
 
 % triangulation
 tri = triuniform(a,b);
 V = tri.Points;
-% figure
-% triplot(tri)
 
 % Approximation with B222
-N = 6;
 i = 2; j = 2; k = 2;
+N = i+j+k;
 S = box_splines(N);
 B = S{k,j};
-% figure
-% plot_box_spline(i,j,k,10)
 
 X = linspace(0,a,a*(N-2)+1);
 Y = linspace(0,b,b*(N-2)+1);
@@ -24,8 +20,8 @@ Y = linspace(0,b,b*(N-2)+1);
 
 B_new = [zeros((b-1)*(N-2),size(B,2)+2*(a-1)*(N-2)); zeros(size(B,1),(a-1)*(N-2)) B zeros(size(B,1),(a-1)*(N-2)); zeros((b-1)*(N-2),size(B,2)+2*(a-1)*(N-2))];
 
-C = cell(j+k+b-1,i+k+a-1);
-C_b = cell(j+k+b-1,i+k+a-1);
+C = cell(j+k+b-1,i+k+a-1); % control poligon of splines 
+C_b = cell(j+k+b-1,i+k+a-1); % actual values of splines 
 
 for vr=1:j+k+b-1
     for st=1:i+k+a-1
@@ -60,6 +56,7 @@ end
 
 A = [];
 
+% remove splines that are equal to 0
 delete = ones(size(C{1,1}(:),1),1);
 
 c = 1;
@@ -74,9 +71,12 @@ for sqv=1:j+k+b-1
     end
 end
 
+% values of f in points
 F = f(reshape(X',1,[])',flip(reshape(Y',1,[])'));
 
-x = A\F;
+x = A\F; % coefs for every spline in series
+
+% construction of box spline series
 c = 1;
 d = 1;
 B = zeros(size(C{1,1}));
@@ -91,6 +91,8 @@ for sqv=1:j+k+b-1
 end
 
 B = flip(B);
+
+% plot and error
 figure
 napake = [];
 for vr=1:b
@@ -118,7 +120,6 @@ for vr=1:b
 end
 
 [XX,YY] = meshgrid(linspace(0,a,100),linspace(0,b,100));
-
 plot3(XX,YY,f(XX,YY))
 
 napaka = norm(napake,inf)

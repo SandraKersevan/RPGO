@@ -1,6 +1,17 @@
 function Bijk = box_spline(i,j,k,smer,D_Bijk)
-% izraèuna škatlasti zlepek za i,j,k kjer uporabi matriko odvodov D_Bijk,
-% kjer so odvodi v dani smeri
+% Opis:
+%  box_spline izracuna pripadajoc skatlasti zlepek tipa 1
+%
+% Definicija:
+%  Bijk = box_spline(i,j,k,smer,D_Bijk)
+%
+% Vhodni podatki:
+%  i, j, k      parametri, ki doloèajo zlepek
+%  D_Bijk       matrika odvoda zlepka v dani smeri
+%  smer         smer po kateri je bila odvajana matrike D_Bijk
+%
+% Izhodni podatek:
+%  Bijk         matrika za skatlasti zlepek
 
 N = i+j+k;
 C = intoSquares(i,j,k,D_Bijk,smer);

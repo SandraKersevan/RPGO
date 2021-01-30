@@ -1,5 +1,16 @@
 function tri = triuniform(N,M,type)
-% nariše mrežo tipa I na [0,N]x[0,M] ali tipa II za i+k+l=N in j+k+l=M
+% Opis:
+%  triuniform skonstruira mrezo triangulacije tipa 1
+%
+% Definicija:
+%  tri = triuniform(N,M,type)
+%
+% Vhodni podatki:
+%  N, M    mreza tipa 1 ali tipa 2 velikosti NxM
+%  type    tip triangulacije(1 ali 2)
+%
+% Izhodni podatek:
+%  tri     triangulacija
 
 if ~exist('M','var')
     M = N;

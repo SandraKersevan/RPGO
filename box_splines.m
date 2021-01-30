@@ -1,9 +1,17 @@
 function Bn = box_splines(n)
-% izraèuna vse škatlaste zlepke, za katere velja i+j+k=n
-% shranjeni so kot [n-2,1,1 ... 1,n-2,1]
-%                  ...
-%                  [1,1,n-2   0  ...  0] 
-
+% Opis:
+%  box_splines izracuna vse skatlaste zlepke tipa 1, za
+%              katere velja i+j+k=n
+%
+% Definicija:
+%  Bn = box_splines(n)
+%
+% Vhodni podatki:
+%  n       stopnja skatlastih zlepkov
+%
+% Izhodni podatek:
+%  Bn      celica velikost (n-2)*(n-2), skatlasti zlepek 
+%          Bijk je na mestu Bn{k,j}
 
 if n < 3
     error("Argument n mora biti vsaj 3");

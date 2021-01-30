@@ -1,5 +1,18 @@
 function D_Bijk = box_spline_der(i,j,k,B,smer)
-% za škatlasti zlepek i,j,k izraèuna matriko odvodov v dani smeri
+% Opis:
+%  box_spline_der izracuna odvod za skatlasti zlepek tipa 1
+%  D_Bijk = D_smer B
+%
+% Definicija:
+%  D_Bijk = box_spline_der(i,j,k,B,smer)
+%
+% Vhodni podatki:
+%  i, j, k      parametri, ki doloèajo zlepek
+%  B            matrika ustreznega zlepka stopnje n-1
+%  smer         smer odvoda
+%
+% Izhodni podatek:
+%  D_Bijk       matrika odvoda za skatlasti zlepek
 
 st_delilnih = i+j+k-3;
 vr = size(B,1);
